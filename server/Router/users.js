@@ -79,7 +79,7 @@ router.post("/login", (req, res) => {
 router.get("/getInfo", (req, res) => {
   const email = req.query.email;
   console.log(email);
-  const sql = `SELECT followingUser, likesPost FROM subscribe LEFT JOIN Users ON subscribe.userNumber = Users.idNumber  WHERE Users.email = '${email}'`;
+  const sql = `SELECT name,email,nickname,introduce,Language, subscribe.followingUser, subscribe.likesPost FROM Users JOIN subscribe ON Users.idNumber = subscribe.userNumber WHERE Users.email = '${email}'`;
   con.query(sql, function (err, result, fields) {
     console.log(result);
     res.send(result);
